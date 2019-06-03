@@ -1,0 +1,2 @@
+# fundraisingapp
+Bachelor thesis
