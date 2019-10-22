@@ -9,9 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 @EnableAutoConfiguration
-@ComponentScan("fundraisingapp.Config")
+@ComponentScan("fundraisingapp")
 public class DemoApplication {
 
     public static void main(String[] args) {
