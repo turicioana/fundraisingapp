@@ -1,5 +1,8 @@
 package fundraisingapp;
 
+import fundraisingapp.Base.Model.User;
+import fundraisingapp.Base.Repositories.IUserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -18,8 +21,14 @@ public class DemoApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+    public CommandLineRunner commandLineRunner(IUserRepository userRepository) {
         return args -> {
+            User user = new User();
+            user.setId(1L);
+            user.setName("Ionel");
+            user.setEmail("ionel@smecher.ro");
+            user.setPassword("ionelsmecherel");
+            userRepository.save(user);
         };
     }
 }
