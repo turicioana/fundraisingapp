@@ -8,21 +8,21 @@ import javax.validation.constraints.NotNull;
 
 @MatchingPassword
 public class UserDto {
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Name should not be null.")
+    @NotEmpty(message = "Name should not be empty.")
     private String name;
 
+    @NotNull(message = "Email address should not be null")
+    @NotEmpty(message = "Email should not be empty.")
     @ValidEmail
-    @NotNull
-    @NotEmpty
     private String email;
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Password should not be null")
+    @NotEmpty(message = "Password should not be empty.")
     private String password;
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Matching password should not be null")
+    @NotEmpty(message = "Matching password should not be empty.")
     private String matchingPassword;
 
     public UserDto(){}
