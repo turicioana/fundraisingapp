@@ -18,11 +18,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class UserController {
+public class RegisterController {
     @Autowired
     private final IUserService userService;
 
-    UserController(UserService userService)
+    RegisterController(UserService userService)
     {
         this.userService = userService;
     }

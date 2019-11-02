@@ -7,4 +7,5 @@ import fundraisingapp.Base.Model.User;
 public interface IUserService
 {
     User newUserAccount(UserDto userDto) throws EmailExistingException;
+    User getUserByEmail(String email);
 }
