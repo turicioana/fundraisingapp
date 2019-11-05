@@ -31,11 +31,11 @@ public class JWTokenService implements Serializable {
     }
 
     public <T> T getClaimFromToken(String token, Function<Claims,T> claimsResolver){
-        final Claims claims =  getAllClaimsFromtoken(token);
+        final Claims claims =  getAllClaimsFromToken(token);
         return claimsResolver.apply(claims);
     }
 
-    private Claims getAllClaimsFromtoken(String token) {
+    private Claims getAllClaimsFromToken(String token) {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
@@ -57,6 +57,6 @@ public class JWTokenService implements Serializable {
     }
 
     public Boolean validateToken(String token, UserDetails userDetails){
-        return (getAllClaimsFromtoken(token).equals(userDetails.getUsername()) && !isTokenExpired(token));
+        return (getAllClaimsFromToken(token).equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }

@@ -1,5 +1,6 @@
 package fundraisingapp.Base.Service;
 
+import fundraisingapp.Base.Dto.JWTUserDetails;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,27 +22,27 @@ public class JWTRequestFilter extends OncePerRequestFilter {
     private JWTokenService jwTokenService;
 
     @Autowired
-    private JwtUserDetailsService userService;
+    private JwtUserDetailsService jwtUserDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         final  String requestHeader =  httpServletRequest.getHeader("Authorization");
-        String username = null;
+        String email = null;
         String jwtToken = null;
         if(requestHeader != null && requestHeader.startsWith("Bearer ")){
             jwtToken = requestHeader.substring(7);
             try{
-                username = jwTokenService.getEmailFromToken(jwtToken);
+                email = jwTokenService.getEmailFromToken(jwtToken);
             }catch(IllegalArgumentException e){
-                System.out.println("unable to get the HWT token");
+                System.out.println("unable to get the JWT token");
             }catch (ExpiredJwtException e){
                 System.out.println("Token has expired");
             }
         }else {
             System.out.println("Token does not begin with Bearer");
         }
-        if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
-            UserDetails userDetails = this.userService.loadUserByUsername(username);
+        if(email != null && SecurityContextHolder.getContext().getAuthentication() == null){
+            JWTUserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(email);
             if(jwTokenService.validateToken(jwtToken,userDetails)){
                 UsernamePasswordAuthenticationToken emailPasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
                 emailPasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
