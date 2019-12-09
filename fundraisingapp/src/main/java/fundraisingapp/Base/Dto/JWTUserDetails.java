@@ -6,10 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class JWTUserDetails implements UserDetails {
     private User user;
@@ -23,15 +20,13 @@ public class JWTUserDetails implements UserDetails {
     @Override
     public Collection<GrantedAuthority> getAuthorities() {
         final Set<GrantedAuthority> _auth = new HashSet<GrantedAuthority>();
-        List<Role> _roles = null;
+        List<Role> _roles = new ArrayList<>();
 
         if(user!=null){
             _roles.add(user.getRole());
         }
-        if(_roles!=null){
-            for(Role _role:_roles){
-                _auth.add(new SimpleGrantedAuthority(_role.getName()));
-            }
+        for(Role _role:_roles){
+            _auth.add(new SimpleGrantedAuthority(_role.getName()));
         }
         return _auth;
     }

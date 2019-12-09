@@ -53,7 +53,7 @@ public class JWTokenService implements Serializable {
     private String doGenerateToken(Map<String,Object> claims, String subject){
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWToken_VALIDITY * 1000))
-                .signWith(SignatureAlgorithm.ES256,secret).compact();
+                .signWith(SignatureAlgorithm.HS256,secret).compact();
     }
 
     public Boolean validateToken(String token, UserDetails userDetails){
