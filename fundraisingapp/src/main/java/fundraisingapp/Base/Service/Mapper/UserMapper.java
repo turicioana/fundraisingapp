@@ -2,17 +2,19 @@ package fundraisingapp.Base.Service.Mapper;
 
 import fundraisingapp.Base.Dto.UserDto;
 import fundraisingapp.Base.Model.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserMapper implements IUserMapper {
+
     @Override
-    public User UserDtoToUser(UserDto userDto) {
+    public User UserDtoToUser(UserDto userDto, PasswordEncoder passwordEncoder) {
         User user = new User();
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
-
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setEnabled(true);
         return user;
     }
 

@@ -9,6 +9,7 @@ import fundraisingapp.Base.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +23,13 @@ public class RegisterController {
     @Autowired
     private final IUserService userService;
 
-    RegisterController(UserService userService)
+    @Autowired
+    private final PasswordEncoder passwordEncoder;
+
+    RegisterController(UserService userService,PasswordEncoder passwordEncoder)
     {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping("/register")
@@ -58,7 +63,7 @@ public class RegisterController {
     {
         User registeredUser = null;
         try{
-            registeredUser =  userService.newUserAccount(userDto);
+            registeredUser =  userService.newUserAccount(userDto, passwordEncoder);
         } catch(EmailExistingException e){
             return null;
         }
