@@ -1,23 +1,17 @@
 package fundraisingapp;
 
-import fundraisingapp.Base.Model.Privilege;
-import fundraisingapp.Base.Model.Role;
-import fundraisingapp.Base.Model.User;
-import fundraisingapp.Base.Repositories.IPrivilegeRepository;
-import fundraisingapp.Base.Repositories.IRoleRepository;
-import fundraisingapp.Base.Repositories.IUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import fundraisingapp.Auth.Model.Privilege;
+import fundraisingapp.Auth.Model.Role;
+import fundraisingapp.Auth.Model.User;
+import fundraisingapp.Auth.Repositories.IPrivilegeRepository;
+import fundraisingapp.Auth.Repositories.IRoleRepository;
+import fundraisingapp.Auth.Repositories.IUserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 @SpringBootApplication
 //@EnableAutoConfiguration

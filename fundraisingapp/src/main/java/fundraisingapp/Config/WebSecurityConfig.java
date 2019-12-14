@@ -1,8 +1,8 @@
 package fundraisingapp.Config;
 
-import fundraisingapp.Base.Service.JWTAuthenticationEntryPoint;
-import fundraisingapp.Base.Service.JWTRequestFilter;
-import fundraisingapp.Base.Service.JwtUserDetailsService;
+import fundraisingapp.Auth.Service.JWTAuthenticationEntryPoint;
+import fundraisingapp.Auth.Service.JWTRequestFilter;
+import fundraisingapp.Auth.Service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
