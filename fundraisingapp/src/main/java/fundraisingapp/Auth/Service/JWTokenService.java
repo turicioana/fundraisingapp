@@ -1,5 +1,6 @@
 package fundraisingapp.Auth.Service;
 
+import fundraisingapp.Auth.Dto.JWTUserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -56,7 +57,8 @@ public class JWTokenService implements Serializable {
                 .signWith(SignatureAlgorithm.HS256,secret).compact();
     }
 
-    public Boolean validateToken(String token, UserDetails userDetails){
-        return (getAllClaimsFromToken(token).equals(userDetails.getUsername()) && !isTokenExpired(token));
+    public Boolean validateToken(String token, JWTUserDetails userDetails){
+        Claims claims = getAllClaimsFromToken(token);
+        return (getAllClaimsFromToken(token).getSubject().equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }

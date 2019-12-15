@@ -26,6 +26,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         final  String requestHeader =  httpServletRequest.getHeader("Authorization");
+        System.out.println("BBB " + requestHeader);
         String email = null;
         String jwtToken = null;
         if(requestHeader != null && requestHeader.startsWith("Bearer ")){
