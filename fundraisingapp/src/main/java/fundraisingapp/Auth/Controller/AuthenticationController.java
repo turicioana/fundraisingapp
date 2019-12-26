@@ -31,6 +31,7 @@ public class AuthenticationController {
     @PostMapping("/login")
     public ResponseEntity<?> generateToken(@RequestBody AuthenticationUserDto authenticationUserDto) throws Exception{
         authenticate(authenticationUserDto.getEmail(), authenticationUserDto.getPassword());
+        System.out.println("Request facut");
         final UserDetails userDetails = userService.loadUserByUsername(authenticationUserDto.getEmail());
 
         final String token = jwTokenService.generateJWToken(userDetails);
