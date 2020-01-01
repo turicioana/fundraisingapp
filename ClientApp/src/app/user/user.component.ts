@@ -9,9 +9,8 @@ import { User } from '../models/user'
 export class UserComponent implements OnInit {
 
   user: User = {
-    username: 'pampam',
+    email: 'pampam',
     password: 'parola',
-    name : 'nume',
     token: 'token'
   }
 

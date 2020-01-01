@@ -4,19 +4,20 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import {LoginUser} from '../app/models/login-user';
+import { User } from './models/user';
 import {ApiService} from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-    private currentUserSubject: BehaviorSubject<LoginUser>;
-    public currentUser: Observable<LoginUser>;
+    private currentUserSubject: BehaviorSubject<User>;
+    public currentUser: Observable<User>;
 
     constructor(
         private http: HttpClient,
         private api: ApiService){
-        this.currentUserSubject =  new BehaviorSubject<LoginUser>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUserSubject =  new BehaviorSubject<User>(JSON.parse(localStorage.getItem('token')));
         this.currentUser =  this.currentUserSubject.asObservable();
     }
 
@@ -24,20 +25,21 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    login(username, password) {
-        var user: LoginUser = {
-            username: username,
-            password: password
-        }
+    login(email, password) {
+        let user = {
+            email: email,
+            password: password,
+            token: ''
+        };
         return this.api.loginUser(user)
         .pipe(map(user => {
-            localStorage.setItem('currentUser', JSON.stringify(user));
+            localStorage.setItem('token', JSON.stringify(user.token));
             this.currentUserSubject.next(user);
             return user;
         }));
     }
     logout(){
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem('token');
         this.currentUserSubject.next(null);
     }
 }

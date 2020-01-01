@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { HttpErrorInterceptor } from './interceptors/HttpErrorInterceptor';
 
 import {ToastrModule} from 'ngx-toastr';
 import {InterceptorService} from './interceptor.service';
@@ -33,12 +32,7 @@ import { HomeComponent } from './home/home.component';
   ],
   providers: [
     UserService,
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorInterceptor,
-      multi: true,
-    }
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

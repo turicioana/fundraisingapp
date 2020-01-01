@@ -5,6 +5,7 @@ import fundraisingapp.Auth.Dto.AuthenticationUserDto;
 import fundraisingapp.Auth.Service.JWTokenService;
 import fundraisingapp.Auth.Service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -28,14 +29,17 @@ public class AuthenticationController {
     @Autowired
     private JwtUserDetailsService userService;
 
+    @CrossOrigin("origins = http://localhost:4200")
     @PostMapping("/login")
     public ResponseEntity<?> generateToken(@RequestBody AuthenticationUserDto authenticationUserDto) throws Exception{
-        authenticate(authenticationUserDto.getEmail(), authenticationUserDto.getPassword());
         System.out.println("Request facut");
+        authenticate(authenticationUserDto.getEmail(), authenticationUserDto.getPassword());
         final UserDetails userDetails = userService.loadUserByUsername(authenticationUserDto.getEmail());
 
         final String token = jwTokenService.generateJWToken(userDetails);
-        return ResponseEntity.ok(new AuthenticationResponse(token));
+        System.out.println("Se va trimite body");
+        return ResponseEntity.ok()
+                .body(new AuthenticationResponse(token));
     }
 
     private void authenticate(String email, String password) throws Exception{

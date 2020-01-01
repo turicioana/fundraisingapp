@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 import { AuthenticationService } from '../authentication.service';
 
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
     loginForm : FormGroup;
     loading = false;
     submitted = false;
-    returnUrl: string;
+    returnUrl: string = '';
 
     constructor(
         private formBuilder: FormBuilder,
@@ -44,9 +45,9 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(this.fval.username.value, this.fval.password.value)
         .subscribe(
             data => {
-                this.router.navigate(['/'])
+                this.router.navigate([this.returnUrl])
             }
-            );
+        );
     }     
     
 }

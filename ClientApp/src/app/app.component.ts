@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
-import { LoginUser } from './models/login-user';
+import { User } from './models/user';
 import {ApiService} from './api.service';
 
 @Component({
@@ -11,7 +11,7 @@ import {ApiService} from './api.service';
 })
 export class AppComponent {
   title = 'FundraisingApp';
-  currentUser: LoginUser;
+  currentUser: User;
 
   constructor(
     private router: Router,
