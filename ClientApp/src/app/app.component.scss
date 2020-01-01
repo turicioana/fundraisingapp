@@ -20,6 +20,21 @@
   background-image: url(../assets/images/charity.jpg);
 }
 
-.child{
+.main-page-content{
   filter: blur(0);
+}
+
+.page-title{
+  margin-top: 8px;
+  text-align: center;
+  font-family: "Dancing Script";
+  font-style: normal;
+  font-weight: 590;
+  font-size: 70px;
+  line-height: 86px;
+  text-align: center;
+
+  color: #3E3B3B;
+
+  text-shadow: 0px 15px 50px rgba(112, 5, 72, 0.7);
 }

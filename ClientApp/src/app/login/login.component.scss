@@ -1,0 +1,78 @@
+.login_form_wrapper{
+    width: 270px;
+    height: 335px;
+    margin:auto;
+    background-color:  rgba(224, 225, 233, 0.452);;
+    border-radius: 15px;
+    display: grid;
+    /* with two columns of same width*/
+    grid-template-columns: 1fr 1fr;
+    padding: 5vh 15px;
+}
+.login_form{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
+    top: 30%;
+    left: 50%;
+    padding: 15px 30px;
+}
+.login_form h2{
+    margin: 0;
+    padding: 0 0 20px;
+    color:#000000;
+    text-align: center;
+    font-family:"Playfair Display";
+    font-size: 36px;
+    line-height: 48px;
+    text-align: top;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.login_form label{
+    margin: 0;
+    padding: 0;
+    font-weight: 600px;
+    color:#000000;
+    font-family:"Playfair Display";
+}
+
+.login_form input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.login_form input[type = email],
+.login_form input[type = password]{
+    border: none;
+    border-bottom: 1px solid #000000;
+    background: transparent;
+    outline: none;
+    height: 25px;
+    color: #000000;
+    font-size:15px;
+}
+
+.login_form button[type = submit]{
+    height: 30px;
+    color: #fff;
+    font-size: 15px;
+    font-family:"Playfair Display";
+    background: #700548;
+    cursor: pointer;
+    border-radius: 6px;
+    border:none;
+    outline: none;
+    margin-top: 15%;
+    margin-left: 25%;
+}
+//  .login_title{
+//     font-family: "Playfair Display";
+//     font-style: normal;
+//     font-weight: normal;
+//     font-size: 36px;
+//     line-height: 48px;
+//     text-align: top;
+//     color: #000000;
+//  }
