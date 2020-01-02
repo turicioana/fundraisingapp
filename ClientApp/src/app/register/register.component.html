@@ -1,0 +1,31 @@
+<div class="login_form_wrapper">
+<div class="login_form">
+    <h2 class = "login_title">Înregistrare</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+      <div class="form-group">
+        <label for="email">Email*:</label>
+        <input type="email" class="form-control" formControlName="email" id="email" autocomplete="off">
+        <div class="error" *ngIf="loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched">Email is required</div>
+      </div>
+      <div class="form-group">
+        <label for="fullname">Nume complet*:</label>
+        <input type="email" class="form-control" formControlName="fullname" id="fullname" autocomplete="off">
+        <div class="error" *ngIf="loginForm.controls['fullname'].hasError('required') && loginForm.controls['fullname'].touched">Fullname is required</div>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Parolă*:</label>
+        <input type="password" class="form-control" formControlName="password" id="pwd" autocomplete="off">
+        <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Password is required</div>
+      </div>
+      <div class="form-group">
+        <label for="match_pwd">Repetă parola*:</label>
+        <input type="password" class="form-control" formControlName="matching_password" id="pwd" autocomplete="off">
+        <div class="error" *ngIf="loginForm.controls['matching_password'].hasError('required') && loginForm.controls['matching_password'].touched">Repeating password is required</div>
+      </div>
+      <button type = "submit" [disabled]="loginForm.invalid">Înregistrează-te</button>
+      <div *ngIf="invalidLogin" class="error">
+        <div>Invalid credentials.</div>
+      </div>
+    </form>
+</div>
+

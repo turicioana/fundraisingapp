@@ -1,0 +1,14 @@
+.row{
+    display: flex;
+    justify-content: center;
+}
+
+.column{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.column:nth-child(1){
+}
+.column:nth-child(2){
+// flex-basis: 50px;
+}
