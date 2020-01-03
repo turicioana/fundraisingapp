@@ -26,6 +26,7 @@ public class FundraiserMapper implements IFundraiserMapper {
         fundraiserRegistrationDto.setAddress(fundraiser.getAddress());
         fundraiserRegistrationDto.setContact_email(fundraiser.getContact_email());
         fundraiserRegistrationDto.setPhone_number(fundraiser.getPhone_number());
+        fundraiserRegistrationDto.setCategory(fundraiser.getCategory().getName());
 
         return fundraiserRegistrationDto;
     }

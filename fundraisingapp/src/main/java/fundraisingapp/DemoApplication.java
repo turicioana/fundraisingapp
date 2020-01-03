@@ -6,6 +6,10 @@ import fundraisingapp.Auth.Model.User;
 import fundraisingapp.Auth.Repositories.IPrivilegeRepository;
 import fundraisingapp.Auth.Repositories.IRoleRepository;
 import fundraisingapp.Auth.Repositories.IUserRepository;
+import fundraisingapp.Base.Model.Category;
+import fundraisingapp.Base.Model.Fundraiser;
+import fundraisingapp.Base.Repositories.ICategoryRepository;
+import fundraisingapp.Base.Repositories.IFundraiserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,7 +27,12 @@ public class DemoApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(IUserRepository userRepository, PasswordEncoder passwordEncoder, IRoleRepository roleRepository, IPrivilegeRepository privilegeRepository) {
+    public CommandLineRunner commandLineRunner(IUserRepository userRepository,
+                                               PasswordEncoder passwordEncoder,
+                                               IRoleRepository roleRepository,
+                                               IPrivilegeRepository privilegeRepository,
+                                               IFundraiserRepository fundraiserRepository,
+                                               ICategoryRepository categoryRepository) {
         return args -> {
             User user = new User();
 //            Role role2 = new Role("user");
@@ -51,6 +60,74 @@ public class DemoApplication {
             user.setEnabled(true);
             user.setRole(role1);
             userRepository.save(user);
+
+            Category category = new Category();
+            category.setId(1L);
+            category.setName("Medical");
+            categoryRepository.save(category);
+
+            Category category1 = new Category();
+            category1.setId(2L);
+            category1.setName("Mediul inconjurator");
+            categoryRepository.save(category1);
+
+            Category category2 = new Category();
+            category2.setId(3L);
+            category2.setName("Calamitati");
+            categoryRepository.save(category2);
+
+            Category category3 = new Category();
+            category3.setId(4L);
+            category3.setName("Cazuri sociale");
+            categoryRepository.save(category3);
+
+            Fundraiser fundraiser = new Fundraiser();
+            fundraiser.setId(1L);
+            fundraiser.setTitle("First fundraiser ever");
+            fundraiser.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+            fundraiser.setPhone_number("074555876");
+            fundraiser.setContact_email("contact123@domain.com");
+            fundraiser.setAddress("114  Still Pastures Drive, Columbia");
+            fundraiser.setUser(user);
+            fundraiser.setCategory(category);
+
+            fundraiserRepository.save(fundraiser);
+
+            Fundraiser fundraiser1 = new Fundraiser();
+            fundraiser1.setId(2L);
+            fundraiser1.setTitle("Second fundraiser ever");
+            fundraiser1.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ");
+            fundraiser1.setPhone_number("0743495555");
+            fundraiser1.setContact_email("contact098@domain.com");
+            fundraiser1.setAddress("483  Parrill Court, Indiana");
+            fundraiser1.setUser(user);
+            fundraiser1.setCategory(category1);
+
+            fundraiserRepository.save(fundraiser1);
+
+            Fundraiser fundraiser2 = new Fundraiser();
+            fundraiser2.setId(3L);
+            fundraiser2.setTitle("First fundraiser ever");
+            fundraiser2.setDescription("This is not so long description");
+            fundraiser2.setPhone_number("0745555555");
+            fundraiser2.setContact_email("contact@domain.com");
+            fundraiser2.setAddress("this is a very random adress");
+            fundraiser2.setUser(user);
+            fundraiser2.setCategory(category3);
+
+            fundraiserRepository.save(fundraiser2);
+
+            Fundraiser fundraiser3 = new Fundraiser();
+            fundraiser3.setId(4L);
+            fundraiser3.setTitle("First fundraiser ever");
+            fundraiser3.setDescription("This is not so long description");
+            fundraiser3.setPhone_number("0745555555");
+            fundraiser3.setContact_email("contact@domain.com");
+            fundraiser3.setAddress("this is a very random adress");
+            fundraiser3.setUser(user);
+            fundraiser3.setCategory(category2);
+
+            fundraiserRepository.save(fundraiser3);
         };
     }
 }

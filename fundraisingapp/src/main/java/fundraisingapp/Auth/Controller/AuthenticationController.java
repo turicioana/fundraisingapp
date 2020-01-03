@@ -32,12 +32,10 @@ public class AuthenticationController {
     @CrossOrigin("origins = http://localhost:4200")
     @PostMapping("/login")
     public ResponseEntity<?> generateToken(@RequestBody AuthenticationUserDto authenticationUserDto) throws Exception{
-        System.out.println("Request facut");
         authenticate(authenticationUserDto.getEmail(), authenticationUserDto.getPassword());
         final UserDetails userDetails = userService.loadUserByUsername(authenticationUserDto.getEmail());
 
         final String token = jwTokenService.generateJWToken(userDetails);
-        System.out.println("Se va trimite body");
         return ResponseEntity.ok()
                 .body(new AuthenticationResponse(token));
     }

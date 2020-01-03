@@ -3,28 +3,32 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatCardModule} from '@angular/material';
+import {MatIconModule} from '@angular/material/icon';
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 
 import {ToastrModule} from 'ngx-toastr';
 import {InterceptorService} from './interceptor.service';
-import {UserService} from './user.service';
+import {UserService} from './authentication/user.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './authentication/login/login.component';
 import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
-import { AuthComponent } from './auth/auth.component';
+import { RegisterComponent } from './authentication/register/register.component';
+import { AuthComponent } from './authentication/auth/auth.component';
+import { FundraiserComponent } from './fundraiser/fundraiser.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    AuthComponent
+    AuthComponent,
+    FundraiserComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,10 @@ import { AuthComponent } from './auth/auth.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatCardModule,
+    MatIconModule,
+    FlexLayoutModule
   ],
   providers: [
     UserService,

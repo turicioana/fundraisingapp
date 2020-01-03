@@ -16,19 +16,11 @@ export class ApiService {
 
   constructor(
     private http: HttpClient) {}
-  localUrl = "http://localhost:8080/login";
-  options = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
-  loginUser(user: LoginUser){
-    console.log(JSON.stringify(user));
-    console.log(`${environment.apiBaseUrl}/login`);
-    console.log(JSON.stringify(this.options));
-    return this.http.post<User>(`${environment.apiBaseUrl}/login`,JSON.stringify(user),this.options);
-  }
+    options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
 
   errorHandle(error) {
     let errorMessage = '';

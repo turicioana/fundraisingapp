@@ -24,15 +24,20 @@ public class FundraiserRegistrationDto {
     @NotEmpty(message = "Phone number should not be empty.")
     private String phone_number;
 
+    @NotNull(message = "Phone number should not be null.")
+    @NotEmpty(message = "Phone number should not be empty.")
+    private String category;
+
     public FundraiserRegistrationDto() {
     }
 
-    public FundraiserRegistrationDto(String title, String description,String address, String contact_email,String phone_number) {
+    public FundraiserRegistrationDto(String title, String description,String address, String contact_email,String phone_number, String category) {
         this.title = title;
         this.description = description;
         this.address = address;
         this.contact_email = contact_email;
         this.phone_number = phone_number;
+        this.category = category;
     }
 
     public String getTitle() {
@@ -73,5 +78,13 @@ public class FundraiserRegistrationDto {
 
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

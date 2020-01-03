@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router} from '@angular/router';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { environment } from 'src/environments/environment';
 
 import { AuthenticationService } from '../authentication.service';
 
@@ -20,10 +18,8 @@ export class LoginComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private toastr: ToastrService    
     ){
     }
 
@@ -51,26 +47,3 @@ export class LoginComponent implements OnInit {
     }     
     
 }
-    /** get f() { return this.loginForm.controls;}
-
-    onSubmit(){
-        this.submitted = true;
-
-        this.alertService.clear();
-
-        if(this.loginForm.invalid){
-            return;
-        }
-        this.loading = true;
-        this.authenticationService.login(this.f.username.value,this.f.password.value)
-        .pipe(first())
-        .subscribe(
-            data => {
-                this.router.navigate([this.returnUrl]);
-            },
-            error => {
-                this.alertService.error(error);
-                this.loading = false;
-            });
-    }*/
-

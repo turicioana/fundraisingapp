@@ -1,6 +1,6 @@
 export class RegisterUser{
     email: string;
-    fullname: string;
+    name: string;
     password: string;
-    matching_password: string;
+    matchingPassword: string;
 }

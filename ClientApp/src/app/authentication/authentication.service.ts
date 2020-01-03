@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import {LoginUser} from '../app/models/login-user';
-import { User } from './models/user';
-import {ApiService} from './api.service';
+import {LoginUser} from '../models/login-user';
+import { User } from '../models/user';
+import {UserService} from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,8 @@ export class AuthenticationService {
 
     constructor(
         private http: HttpClient,
-        private api: ApiService){
+        private userService: UserService
+        ){
         this.currentUserSubject =  new BehaviorSubject<User>(JSON.parse(localStorage.getItem('token')));
         this.currentUser =  this.currentUserSubject.asObservable();
     }
@@ -31,7 +32,7 @@ export class AuthenticationService {
             password: password,
             token: ''
         };
-        return this.api.loginUser(user)
+        return this.userService.login(user)
         .pipe(map(user => {
             localStorage.setItem('token', JSON.stringify(user.token));
             this.currentUserSubject.next(user);

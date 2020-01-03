@@ -15,7 +15,7 @@ public class Fundraiser {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "decription", nullable = false)
+    @Column(name = "decription", nullable = false, columnDefinition="text")
     private String description;
 
     @Column(name = "address")
@@ -39,11 +39,24 @@ public class Fundraiser {
                     name = "user_id", referencedColumnName = "id"))
     private User user;
 
+    @ManyToOne
+    @JoinTable(
+            name = "fundraisers_categories",
+            joinColumns = @JoinColumn(
+                    name = "fundraiser_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "category_id", referencedColumnName = "id"))
+    private Category category;
+
     public Fundraiser() {
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -100,5 +113,13 @@ public class Fundraiser {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

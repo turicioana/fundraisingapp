@@ -32,6 +32,7 @@ public class RegisterController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @CrossOrigin("origins = http://localhost:4200")
     @PostMapping("/register")
     public ResponseEntity<GenericResponse> register(@Valid @RequestBody UserDto userDto){
         User registeredUser = createUserAccount(userDto);
