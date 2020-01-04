@@ -5,12 +5,10 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -45,14 +43,16 @@ public class JWTokenService implements Serializable {
         return expirationDate.before(new Date());
     }
 
-    public String generateJWToken(UserDetails user)
+    public String generateJWToken(JWTUserDetails user)
     {
-        Map<String, Object> claims = new HashMap<>();
-        return doGenerateToken(claims, user.getUsername());
+        Claims claims = Jwts.claims().setSubject(user.getUsername());
+        claims.put("roles", user.getAuthorities());
+        claims.put("username", user.getName());
+        return doGenerateToken(claims);
     }
 
-    private String doGenerateToken(Map<String,Object> claims, String subject){
-        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
+    private String doGenerateToken(Map<String,Object> claims){
+        return Jwts.builder().setClaims(claims).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWToken_VALIDITY * 1000))
                 .signWith(SignatureAlgorithm.HS256,secret).compact();
     }

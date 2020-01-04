@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './authentication/authentication.service';
 import { User } from './models/user';
-import {ApiService} from './api.service';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +9,11 @@ import {ApiService} from './api.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'FundraisingApp';
   currentUser: User;
 
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private api: ApiService
   ){
     this.authenticationService.currentUser.subscribe( x=> this.currentUser = x);
   }

@@ -2,6 +2,7 @@ package fundraisingapp.Auth.Controller;
 
 import fundraisingapp.Auth.AuthenticationResponse;
 import fundraisingapp.Auth.Dto.AuthenticationUserDto;
+import fundraisingapp.Auth.Dto.JWTUserDetails;
 import fundraisingapp.Auth.Service.JWTokenService;
 import fundraisingapp.Auth.Service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,9 +33,9 @@ public class AuthenticationController {
 
     @CrossOrigin("origins = http://localhost:4200")
     @PostMapping("/login")
-    public ResponseEntity<?> generateToken(@RequestBody AuthenticationUserDto authenticationUserDto) throws Exception{
+    public ResponseEntity<?> generateToken(@RequestBody @AuthenticationPrincipal AuthenticationUserDto authenticationUserDto) throws Exception{
         authenticate(authenticationUserDto.getEmail(), authenticationUserDto.getPassword());
-        final UserDetails userDetails = userService.loadUserByUsername(authenticationUserDto.getEmail());
+        final JWTUserDetails userDetails = userService.loadUserByUsername(authenticationUserDto.getEmail());
 
         final String token = jwTokenService.generateJWToken(userDetails);
         return ResponseEntity.ok()

@@ -45,7 +45,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         if (user == null) {
             return new JWTUserDetails(new User());
         }
-        return new JWTUserDetails(new User(user.getEmail(),user.getPassword(),user.getRole(),user.isEnabled()));
+        return new JWTUserDetails(new User(user.getEmail(),user.getName(),user.getPassword(),user.getRole(),user.isEnabled()));
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(

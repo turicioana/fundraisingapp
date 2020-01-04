@@ -18,6 +18,7 @@ export class InterceptorService implements HttpInterceptor {
         url:req.url
       });
     }
+    // console.log( localStorage.getItem("token").replace('"','').replace('"',''))
     return next.handle(req);
   }
 }

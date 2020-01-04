@@ -6,8 +6,15 @@ import { LoginComponent } from './authentication/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthComponent } from './authentication/auth/auth.component';
 import { RegisterComponent } from './authentication/register/register.component';
+import { FundraiserComponent } from './fundraiser/fundraiser.component';
 const routes: Route[] = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuardService] },
+  { path: '', component: HomeComponent, canActivate: [AuthGuardService], children: [
+    {
+      path:"fundraisers",
+      component: FundraiserComponent,
+      data: { roles: ['FUNDRAISER', 'USER']}
+    }
+  ] },
   { path: '**', redirectTo: '/auth', pathMatch: 'full' },
   {path: 'auth', component: AuthComponent, children: [
     {

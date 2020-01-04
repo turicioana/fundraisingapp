@@ -48,10 +48,20 @@ public class DemoApplication {
             Privilege privilege2 = new Privilege("READ_PRIVILEGE");
             privilegeRepository.save(privilege2);
 
-            Role role1 = new Role("admin");
+            Role role1 = new Role("ADMIN");
             role1.addPrivilege(privilege1);
             role1.addPrivilege(privilege2);
             roleRepository.save(role1);
+
+            Role role2 = new Role("FUNDRAISER");
+            role2.addPrivilege(privilege1);
+            role2.addPrivilege(privilege2);
+            roleRepository.save(role2);
+
+            Role role3 = new Role("USER");
+            role3.addPrivilege(privilege1);
+            role3.addPrivilege(privilege2);
+            roleRepository.save(role3);
 
             user.setId(1L);
             user.setName("Ionel");
@@ -60,6 +70,24 @@ public class DemoApplication {
             user.setEnabled(true);
             user.setRole(role1);
             userRepository.save(user);
+
+            User user1 = new User();
+            user1.setId(2L);
+            user1.setName("Testulet");
+            user1.setEmail("test@test.com");
+            user1.setPassword(passwordEncoder.encode("parola"));
+            user1.setEnabled(true);
+            user1.setRole(role2);
+            userRepository.save(user1);
+
+            User user2 = new User();
+            user2.setId(3L);
+            user2.setName("RandomUser");
+            user2.setEmail("user@user.com");
+            user2.setPassword(passwordEncoder.encode("parola"));
+            user2.setEnabled(true);
+            user2.setRole(role3);
+            userRepository.save(user2);
 
             Category category = new Category();
             category.setId(1L);

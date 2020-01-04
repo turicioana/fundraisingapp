@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface IFundraiserService {
     List<FundraiserRegistrationDto> getAllFundraisers();
+    Fundraiser saveFundraiser(FundraiserRegistrationDto fundraiserDto);
 }

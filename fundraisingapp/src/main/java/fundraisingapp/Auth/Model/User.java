@@ -48,11 +48,12 @@ public class User {
         this.role = role;
     }
 
-    public User(String email, String password, Role role, boolean isEnabled) {
+    public User(String email, String name, String password, Role role, boolean isEnabled) {
         this.email = email;
         this.password = password;
         this.role = role;
         this.isEnabled = isEnabled;
+        this.name = name;
     }
 
     public User(String email, String password){

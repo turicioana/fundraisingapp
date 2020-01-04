@@ -19,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { AuthComponent } from './authentication/auth/auth.component';
 import { FundraiserComponent } from './fundraiser/fundraiser.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { FundraiserComponent } from './fundraiser/fundraiser.component';
     HomeComponent,
     RegisterComponent,
     AuthComponent,
-    FundraiserComponent
+    FundraiserComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

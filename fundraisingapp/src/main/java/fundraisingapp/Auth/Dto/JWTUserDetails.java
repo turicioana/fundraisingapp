@@ -11,10 +11,11 @@ import java.util.*;
 public class JWTUserDetails implements UserDetails {
     private User user;
 
-    public JWTUserDetails(){}
+    private Collection<GrantedAuthority> authorities;
 
     public JWTUserDetails(final User _user){
         this.user = _user;
+        this.authorities = getAuthorities();
     }
 
     @Override
@@ -42,6 +43,13 @@ public class JWTUserDetails implements UserDetails {
             return null;
         }
         return this.user.getEmail();
+    }
+
+    public String getName() {
+        if(this.user == null){
+            return null;
+        }
+        return this.user.getName();
     }
 
     @Override

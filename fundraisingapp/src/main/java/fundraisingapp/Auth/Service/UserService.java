@@ -51,4 +51,10 @@ public class UserService implements IUserService {
     public User getUserByEmail(String email){
         return userRepository.findByEmail(email);
     }
+
+    public void changeUserRole(User user, String role){
+        User user1 = getUserByEmail(user.getEmail());
+        user1.setRole(roleRepository.findByName(role));
+        userRepository.save(user1);
+    }
 }

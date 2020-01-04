@@ -12,7 +12,7 @@
 .scrollbar {
     float: left;
     margin-bottom: 20px;
-    margin-left: 15px;
+    margin-left: 10px;
     margin-top: 40px;
     overflow-y: scroll;
 }
@@ -33,13 +33,3 @@
 	background-color: rgba(245, 245, 245, 0.281);
 }
 
-.fundraiser-card:hover{
-    -moz-box-shadow: 0 0 50px rgba(112, 5, 73, 0.5);
-    -webkit-box-shadow: 0 0 50px rgb(112,5,72, 0.5);
-    box-shadow: 0 0 50px rgb(112,5,72, 0.5);
-}
-
-.card-header-image{
-    background-image: url(../../assets/images/charity.jpg);
-    background-size: cover;
-}
