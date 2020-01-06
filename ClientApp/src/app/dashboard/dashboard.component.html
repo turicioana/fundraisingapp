@@ -1,0 +1,56 @@
+<app-header></app-header>
+<div>
+    <mat-card fxLayout="row" class = "dashboard_wrapper">
+        <mat-card class = "dashboard_card">
+        <mat-card-header>
+            <mat-icon mat-card-avatar class= "card-header-image1"></mat-icon>
+            <mat-card-title class = "card-header-class">
+            On this site you can donate for fundraisers from different categories
+            <mat-form-field>
+            <mat-label>Choose category</mat-label>
+            <mat-select>
+                    <mat-option *ngFor = "let category of categoriesObservable | async" [value] = "category.name">{{category.name}}
+                    </mat-option>
+                    <mat-option routerLink='/home/fundraisers'> All categories</mat-option>
+            </mat-select>
+            </mat-form-field>
+            </mat-card-title>
+        </mat-card-header>
+        </mat-card>
+
+        <mat-card class = "dashboard_card">
+            <mat-card-header>
+            <mat-icon mat-card-avatar class= "card-header-image2"></mat-icon>
+            <mat-card-title class = "card-header-class">
+            Are you part of an association that supports charitable causes? We will help you reach your goals.
+            <button class = "btn" routerLink='/fundraisers-form'> 
+                <label>Go to form >></label>
+            </button>
+            </mat-card-title>
+        </mat-card-header>
+        </mat-card>
+
+        <mat-card class = "dashboard_card">
+            <mat-card-header>
+            <mat-icon mat-card-avatar class= "card-header-image3"></mat-icon>
+            <mat-card-title class = "card-header-class">
+            Do you represent a company? Add vouchers to your products/services to make people donate.
+            <button class = "btn" routerLink='/home'> 
+                <label>Go to form >></label>
+            </button>
+            </mat-card-title>
+            </mat-card-header>
+        </mat-card>
+        <mat-card class = "dashboard_card">
+        <mat-card-header>
+            <mat-icon mat-card-avatar class= "card-header-image4"></mat-icon>
+            <mat-card-title class = "card-header-class">
+            View all offers from partner companies and win them through donations for the causes they support.
+            <button class = "btn" routerLink='/home'> 
+                <label>Go to offers >></label>
+            </button>
+            </mat-card-title>
+            </mat-card-header>
+        </mat-card>
+    </mat-card>
+</div>

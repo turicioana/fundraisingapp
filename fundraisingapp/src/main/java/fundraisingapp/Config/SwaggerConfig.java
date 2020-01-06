@@ -55,6 +55,7 @@ public class SwaggerConfig {
         return SecurityContext.builder()
                 .securityReferences(defaultAuth())
                 .forPaths(PathSelectors.regex("/fundraisers"))
+                .forPaths(PathSelectors.regex("/categories"))
                 .build();
     }
 

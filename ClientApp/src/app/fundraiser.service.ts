@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Fundraiser } from './models/fundraiser';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,10 @@ export class FundraiserService {
   };
 
   getAllFundraisers(){
-    return this.http.get<any>(`${environment.apiBaseUrl}/fundraisers`,this.options);
+    return this.http.get<any>(`${environment.apiBaseUrl}/fundraisers`,this.options); 
+  }
+
+  addFundraiser(fundraiser: Fundraiser){
+    return this.http.post<Fundraiser>(`${environment.apiBaseUrl}/fundraisers`,JSON.stringify(fundraiser),this.options);
   }
 }

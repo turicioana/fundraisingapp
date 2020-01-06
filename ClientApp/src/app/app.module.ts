@@ -6,6 +6,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import {MatSelectModule} from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 
 import {ToastrModule} from 'ngx-toastr';
@@ -20,6 +22,9 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { AuthComponent } from './authentication/auth/auth.component';
 import { FundraiserComponent } from './fundraiser/fundraiser.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CategoryComponent } from './category/category.component';
+import { FundraiserFormComponent } from './fundraiser-form/fundraiser-form.component';
 
 
 @NgModule({
@@ -30,7 +35,10 @@ import { HeaderComponent } from './shared/header/header.component';
     RegisterComponent,
     AuthComponent,
     FundraiserComponent,
-    HeaderComponent
+    HeaderComponent,
+    DashboardComponent,
+    CategoryComponent,
+    FundraiserFormComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +49,9 @@ import { HeaderComponent } from './shared/header/header.component';
     ToastrModule.forRoot(),
     MatCardModule,
     MatIconModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatSelectModule,
+    FormsModule
   ],
   providers: [
     UserService,

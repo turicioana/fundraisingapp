@@ -1,0 +1,55 @@
+<app-header></app-header>
+<div>
+    <mat-card fxLayout="column" class = "dashboard_wrapper">
+        <mat-card fxLayout = "column" class = "dashboard_card">
+        <mat-card-header>
+            <mat-icon mat-card-avatar class= "card-header-image2"></mat-icon>
+            <mat-card-title class = "card-header-class">
+            Fundraiser registration form
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="login_form">
+            <form [formGroup]="fundraiserForm" (ngSubmit)="onFormSubmit()">
+                <div class="form-group">
+                    <label for="title">Title*:</label>
+                    <input type="title" class="form-control" formControlName="title" id="title" autocomplete="off">
+                    <div class="error" *ngIf="fundraiserForm.controls['title'].hasError('required') && fundraiserForm.controls['title'].touched"> Title is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description*:</label>
+                    <input type="description" class="form-control" formControlName="description" id="description" autocomplete="off">
+                    <div class="error" *ngIf="fundraiserForm.controls['description'].hasError('required') && fundraiserForm.controls['description'].touched">Description is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address*:</label>
+                    <input type="address" class="form-control" formControlName="address" id="address" autocomplete="off">
+                    <div class="error" *ngIf="fundraiserForm.controls['address'].hasError('required') && fundraiserForm.controls['address'].touched">Address is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="contact_email">Contact email*:</label>
+                    <input type="contact_email" class="form-control" formControlName="contact_email" id="contact_email" autocomplete="off">
+                    <div class="error" *ngIf="fundraiserForm.controls['contact_email'].hasError('required') && fundraiserForm.controls['contact_email'].touched">Contact email is required</div>
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">Phone number*:</label>
+                    <input type="phone_number" class="form-control" formControlName="phone_number" id="phone_number" autocomplete="off">
+                    <div class="error" *ngIf="fundraiserForm.controls['phone_number'].hasError('required') && fundraiserForm.controls['phone_number'].touched">Phone number is required</div>
+                </div>
+                <mat-form-field>
+                    <mat-label>Choose category</mat-label>
+                    <mat-select formControlName="category">
+                    <mat-option *ngFor = "let category of categoriesObservable | async" [value] = "category.name">{{category.name}}
+                    </mat-option>
+                    </mat-select>
+                    </mat-form-field><p></p>
+                <button type = "submit" [disabled]="fundraiserForm.invalid">Submit</button>
+                <div *ngIf="invalidLogin" class="error">
+                <div>Invalid form.</div>
+                </div>
+            </form>
+            </div>
+        </mat-card-content>
+        </mat-card>
+    </mat-card>
+</div>

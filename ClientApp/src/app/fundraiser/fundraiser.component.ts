@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 })
 export class FundraiserComponent implements OnInit {
 
-  private fundraisers: Fundraiser[] = [];
   public fundraisersObservable: Observable<Fundraiser[]>;
 
   constructor(
