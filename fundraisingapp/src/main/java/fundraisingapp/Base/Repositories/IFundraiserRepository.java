@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface IFundraiserRepository extends CrudRepository<Fundraiser,Long> {
     List<Fundraiser> findAll();
+    Fundraiser getById(Long id);
 }

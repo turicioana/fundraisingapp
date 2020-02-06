@@ -67,9 +67,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/webjars/**",
                 "/login",
                 "/register").permitAll()
-                .antMatchers(HttpMethod.GET,"/categories").hasAnyAuthority("FUNDRAISER","USER")
-                .antMatchers(HttpMethod.GET,"/fundraisers").hasAnyAuthority("FUNDRAISER", "USER")
-                .antMatchers(HttpMethod.POST,"/fundraisers").hasAnyAuthority("FUNDRAISER", "USER")
+                .antMatchers(HttpMethod.GET,"/categories").hasAnyAuthority("FUNDRAISER","USER","COMPANY","ADMIN")
+                .antMatchers(HttpMethod.GET,"/fundraisers/**").hasAnyAuthority("FUNDRAISER", "USER", "COMPANY","ADMIN")
+                .antMatchers(HttpMethod.POST,"/fundraisers").hasAnyAuthority("FUNDRAISER", "USER","ADMIN")
+                .antMatchers(HttpMethod.POST,"/companies").hasAnyAuthority("COMPANY", "USER","ADMIN")
                 .anyRequest().authenticated().and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

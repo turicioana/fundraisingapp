@@ -1,0 +1,72 @@
+<app-header></app-header>
+    <mat-card fxLayout="column" class = "dashboard_wrapper">
+        <mat-card fxLayout = "column" class = "dashboard_card">
+        <mat-card-header>
+            <mat-icon mat-card-avatar class= "card-header-image"></mat-icon>
+            <mat-card-title class = "card-header-class">
+            Company registration form
+            </mat-card-title>
+            <mat-card-subtitle class = "card-subheader-class">
+            *by completing the information in this form you give your consent regarding the processing of this data
+            <br>*we recommend you to add a company logo for any use within the application
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div class = "form-container" [formGroup]="companyForm" (ngSubmit)="onFormSubmit()">
+                <div fxLayout = "column">
+                <div fxLayout = "row" class = "form-section-1">
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName = "name" [(ngModel)] = "name">
+                    <button mat-button *ngIf="name" matSuffix mat-icon-button aria-label="Clear" (click)="name=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="companyForm.controls['name'].hasError('required')">
+                        Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input matInput formControlName = "address">
+                    <mat-error *ngIf="companyForm.controls['address'].hasError('required')">
+                        Address is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf = "companyForm.controls['address'].hasError('maxlength')"> 
+                        Address should have maximum 100 characters
+                    </mat-error>
+                </mat-form-field>
+                </div>
+                <div fxLayout = "row">
+                <mat-form-field>
+                    <mat-label>Contact email</mat-label>
+                    <input matInput formControlName = "contact_email" [(ngModel)] = "contact_email">
+                    <button mat-button *ngIf="contact_email" matSuffix mat-icon-button aria-label="Clear" (click)="contact_email=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="companyForm.controls['contact_email'].hasError('required')">
+                        Contact email is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf = "companyForm.controls['contact_email'].hasError('email')"> 
+                        Invalid email format
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Phone number</mat-label>
+                    <input matInput formControlName = "phone_number" [(ngModel)] = "phone_number">
+                    <button mat-button *ngIf="phone_number" matSuffix mat-icon-button aria-label="Clear" (click)="phone_number=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="companyForm.controls['phone_number'].hasError('required')">
+                        Phone number is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                </div>
+                <button mat-button class = "submit-button" type = "button" (click) = "onFormSubmit()" [disabled]="companyForm.invalid">
+                    <label>Submit</label></button>
+                <div *ngIf="invalidLogin" class="error">
+                <div>Invalid form.</div>
+                </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>

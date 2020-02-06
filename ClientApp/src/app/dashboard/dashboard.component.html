@@ -35,7 +35,7 @@
             <mat-icon mat-card-avatar class= "card-header-image3"></mat-icon>
             <mat-card-title class = "card-header-class">
             Do you represent a company? Add vouchers to your products/services to make people donate.
-            <button class = "btn" routerLink='/home'> 
+            <button class = "btn" routerLink='/company-form'> 
                 <label>Go to form >></label>
             </button>
             </mat-card-title>
@@ -45,8 +45,8 @@
         <mat-card-header>
             <mat-icon mat-card-avatar class= "card-header-image4"></mat-icon>
             <mat-card-title class = "card-header-class">
-            View all offers from partner companies and win them through donations for the causes they support.
-            <button class = "btn" routerLink='/home'> 
+            View all offers from partner companies and win them through donations.
+            <button class = "btn" [routerLink]="['/vouchers']"> 
                 <label>Go to offers >></label>
             </button>
             </mat-card-title>

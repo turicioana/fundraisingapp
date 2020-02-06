@@ -1,7 +1,10 @@
 package fundraisingapp.Base.Dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 public class FundraiserRegistrationDto {
     @NotNull(message = "Title should not be null.")
@@ -24,9 +27,15 @@ public class FundraiserRegistrationDto {
     @NotEmpty(message = "Phone number should not be empty.")
     private String phone_number;
 
-    @NotNull(message = "Phone number should not be null.")
-    @NotEmpty(message = "Phone number should not be empty.")
+    @NotNull(message = "Category should not be null.")
+    @NotEmpty(message = "Category should not be empty.")
     private String category;
+
+    private List<String> images;
+
+    @NotNull(message = "Amount should not be null.")
+    @NotEmpty(message = "Amount number should not be empty.")
+    private double amount;
 
     public FundraiserRegistrationDto() {
     }
@@ -86,5 +95,21 @@ public class FundraiserRegistrationDto {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> image) {
+        this.images = image;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 }

@@ -1,0 +1,26 @@
+<app-header></app-header>
+<div>
+    <mat-card fxLayout="row" class = "dashboard_wrapper">
+        <mat-card fxLayout = "column" class = "dashboard_card">
+        <mat-card-header>
+            <div mat-card-avatar class= "card-header-image"></div>
+            <mat-card-title class = "card-header-class">{{voucher.type}} {{voucher.purpose}}</mat-card-title>
+            <mat-card-subtitle class = "card-header-class">{{voucher.number}}</mat-card-subtitle>
+	    </mat-card-header>
+        <mat-card-content>
+            <p class = "card-content-class">offered by</p>
+            <div> 
+                <p class = "card-content-class">{{voucher.company.name}}, {{voucher.company.address}}, {{voucher.company.contact_email}}, {{voucher.company.phone_number}}</p>
+            </div>
+            <p class = "card-content-class">to support </p> 
+            <div>
+                <p class = "card-content-class">{{voucher.fundraiser.title}}</p>
+                <div class = "action-buttons">
+                <button mat-button [routerLink] = "['/fundraisers',voucher.fundraiser.id]">Details</button>
+                <button mat-button [routerLink] = "['/vouchers']">Donate</button>
+                </div>
+            </div>
+        </mat-card-content>
+        </mat-card>
+    </mat-card>
+</div>

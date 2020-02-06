@@ -1,6 +1,6 @@
 <div class="login_form_wrapper">
 <div class="login_form">
-    <h2 class = "login_title">Înregistrare</h2>
+    <h2 class = "login_title">Register</h2>
     <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit()">
       <div class="form-group">
         <label for="email">Email*:</label>
@@ -8,22 +8,23 @@
         <div class="error" *ngIf="registerForm.controls['email'].hasError('required') && registerForm.controls['email'].touched">Email is required</div>
       </div>
       <div class="form-group">
-        <label for="name">Nume complet*:</label>
+        <label for="name">Fullname*:</label>
         <input type="email" class="form-control" formControlName="name" id="fullname" autocomplete="off">
         <div class="error" *ngIf="registerForm.controls['name'].hasError('required') && registerForm.controls['name'].touched">Fullname is required</div>
       </div>
       <div class="form-group">
-        <label for="pwd">Parolă*:</label>
+        <label for="pwd">Password*:</label>
         <input type="password" class="form-control" formControlName="password" id="register-pwd" autocomplete="off">
         <div class="error" *ngIf="registerForm.controls['password'].hasError('required') && registerForm.controls['password'].touched">Password is required</div>
         <div class = "error" *ngIf="registerForm.controls['password'].hasError('minLength')">Parola trebuie sa contina cel putin 6 caractere</div>
       </div>
       <div class="form-group">
-        <label for="match_pwd">Repetă parola*:</label>
+        <label for="match_pwd">Matching password*:</label>
         <input type="password" class="form-control" formControlName="matchingPassword" id="matching-pwd" autocomplete="off">
         <div class="error" *ngIf="registerForm.controls['matchingPassword'].hasError('required') && registerForm.controls['matchingPassword'].touched">Repeating password is required</div>
       </div>
-      <button type = "submit" [disabled]="registerForm.invalid">Înregistrează-te</button>
+      <button type = "submit" [disabled]="registerForm.invalid">
+        <label>Register</label></button>
     </form>
 </div>
 

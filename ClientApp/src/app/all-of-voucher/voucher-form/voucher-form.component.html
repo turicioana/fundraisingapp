@@ -1,0 +1,51 @@
+<app-header></app-header>
+    <mat-card fxLayout="column" class = "dashboard_wrapper">
+        <mat-card fxLayout = "column" class = "dashboard_card">
+        <mat-card-header>
+            <mat-icon mat-card-avatar class= "card-header-image"></mat-icon>
+            <mat-card-title class = "card-header-class">
+            Add voucher
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class = "form-container" [formGroup]="voucherForm" (ngSubmit)="onFormSubmit()">
+                <div fxLayout = "column">
+                <div fxLayout = "row" class = "form-section-1">
+                <mat-form-field>
+                    <mat-label>Choose voucher type</mat-label>
+                    <mat-select formControlName="type">
+                    <mat-option *ngFor = "let type of types" [value] = "type">
+                        {{type}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Porpose</mat-label>
+                    <input matInput formControlName = "purpose" [(ngModel)] = "purpose">
+                    <button mat-button *ngIf="purpose" matSuffix mat-icon-button aria-label="Clear" (click)="purpose=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="voucherForm.controls['purpose'].hasError('required')">
+                        Porpose is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Number</mat-label>
+                    <input matInput formControlName = "number">
+                    <mat-error *ngIf="voucherForm.controls['number'].hasError('required')">
+                        Number is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf = "voucherForm.controls['number'].hasError('maxlength')"> 
+                        Number should have maximum 3 characters
+                    </mat-error>
+                </mat-form-field>
+                </div>
+                <button mat-button class = "submit-button" type = "button" (click) = "onFormSubmit()" [disabled]="voucherForm.invalid">
+                    <label>Submit</label></button>
+                <div *ngIf="invalidLogin" class="error">
+                <div>Invalid form.</div>
+                </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>

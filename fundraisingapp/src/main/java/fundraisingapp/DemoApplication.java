@@ -7,8 +7,10 @@ import fundraisingapp.Auth.Repositories.IPrivilegeRepository;
 import fundraisingapp.Auth.Repositories.IRoleRepository;
 import fundraisingapp.Auth.Repositories.IUserRepository;
 import fundraisingapp.Base.Model.Category;
+import fundraisingapp.Base.Model.Company;
 import fundraisingapp.Base.Model.Fundraiser;
 import fundraisingapp.Base.Repositories.ICategoryRepository;
+import fundraisingapp.Base.Repositories.ICompanyRepository;
 import fundraisingapp.Base.Repositories.IFundraiserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -32,7 +34,8 @@ public class DemoApplication {
                                                IRoleRepository roleRepository,
                                                IPrivilegeRepository privilegeRepository,
                                                IFundraiserRepository fundraiserRepository,
-                                               ICategoryRepository categoryRepository) {
+                                               ICategoryRepository categoryRepository,
+                                               ICompanyRepository companyRepository) {
         return args -> {
             User user = new User();
 //            Role role2 = new Role("user");
@@ -63,6 +66,11 @@ public class DemoApplication {
             role3.addPrivilege(privilege2);
             roleRepository.save(role3);
 
+            Role role4 = new Role("COMPANY");
+            role4.addPrivilege(privilege1);
+            role4.addPrivilege(privilege2);
+            roleRepository.save(role4);
+
             user.setId(1L);
             user.setName("Ionel");
             user.setEmail("ionel@smecher.ro");
@@ -77,7 +85,7 @@ public class DemoApplication {
             user1.setEmail("test@test.com");
             user1.setPassword(passwordEncoder.encode("parola"));
             user1.setEnabled(true);
-            user1.setRole(role2);
+            user1.setRole(role3);
             userRepository.save(user1);
 
             User user2 = new User();
@@ -86,27 +94,36 @@ public class DemoApplication {
             user2.setEmail("user@user.com");
             user2.setPassword(passwordEncoder.encode("parola"));
             user2.setEnabled(true);
-            user2.setRole(role3);
+            user2.setRole(role4);
             userRepository.save(user2);
+
+            Company company = new Company();
+            company.setId(1L);
+            company.setName("Random Company");
+            company.setAddress("Str. Palat nr. 10");
+            company.setContact_email("email@domain.com");
+            company.setPhone_number("0755555555");
+            company.setUser(user2);
+            companyRepository.save(company);
 
             Category category = new Category();
             category.setId(1L);
-            category.setName("Medical");
+            category.setName("Medical causes");
             categoryRepository.save(category);
 
             Category category1 = new Category();
             category1.setId(2L);
-            category1.setName("Mediul inconjurator");
+            category1.setName("Environment");
             categoryRepository.save(category1);
 
             Category category2 = new Category();
             category2.setId(3L);
-            category2.setName("Calamitati");
+            category2.setName("Disasters");
             categoryRepository.save(category2);
 
             Category category3 = new Category();
             category3.setId(4L);
-            category3.setName("Cazuri sociale");
+            category3.setName("Social causes");
             categoryRepository.save(category3);
 
             Fundraiser fundraiser = new Fundraiser();
@@ -117,6 +134,9 @@ public class DemoApplication {
             fundraiser.setContact_email("contact123@domain.com");
             fundraiser.setAddress("114  Still Pastures Drive, Columbia");
             fundraiser.setUser(user);
+            fundraiser.setMaximumAmount(1000);
+            fundraiser.setActualAmount(500);
+            fundraiser.setActive(true);
             fundraiser.setCategory(category);
 
             fundraiserRepository.save(fundraiser);
@@ -129,6 +149,9 @@ public class DemoApplication {
             fundraiser1.setContact_email("contact098@domain.com");
             fundraiser1.setAddress("483  Parrill Court, Indiana");
             fundraiser1.setUser(user);
+            fundraiser1.setMaximumAmount(10000);
+            fundraiser1.setActualAmount(700);
+            fundraiser1.setActive(true);
             fundraiser1.setCategory(category1);
 
             fundraiserRepository.save(fundraiser1);
@@ -141,6 +164,9 @@ public class DemoApplication {
             fundraiser2.setContact_email("contact@domain.com");
             fundraiser2.setAddress("this is a very random adress");
             fundraiser2.setUser(user);
+            fundraiser2.setMaximumAmount(1570);
+            fundraiser2.setActualAmount(300);
+            fundraiser2.setActive(true);
             fundraiser2.setCategory(category3);
 
             fundraiserRepository.save(fundraiser2);
@@ -153,6 +179,9 @@ public class DemoApplication {
             fundraiser3.setContact_email("contact@domain.com");
             fundraiser3.setAddress("this is a very random adress");
             fundraiser3.setUser(user);
+            fundraiser3.setMaximumAmount(5000);
+            fundraiser3.setActualAmount(0);
+            fundraiser3.setActive(true);
             fundraiser3.setCategory(category2);
 
             fundraiserRepository.save(fundraiser3);

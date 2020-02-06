@@ -22,7 +22,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @PreAuthorize("hasAnyAuthority('FUNDRAISER', 'USER')")
+    @PreAuthorize("hasAnyAuthority('FUNDRAISER', 'USER', 'COMPANY','ADMIN')")
     @GetMapping
     public List<CategoryDto> getAllCategories(){
         return categoryService.getAllCategories();

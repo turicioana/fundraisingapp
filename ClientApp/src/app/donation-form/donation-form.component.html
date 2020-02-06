@@ -1,0 +1,33 @@
+<app-header></app-header>
+    <mat-card fxLayout="column" class = "dashboard_wrapper">
+        <mat-card fxLayout = "column" class = "dashboard_card">
+        <mat-card-header>
+            <mat-icon mat-card-avatar class= "card-header-image"></mat-icon>
+            <mat-card-title class = "card-header-class">
+            Submit your donation
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class = "form-container" [formGroup]="donationForm" (ngSubmit)="onFormSubmit()">
+                <div fxLayout = "column">
+                <div fxLayout = "row" class = "form-section-1">
+                <mat-form-field>
+                    <mat-label>Amount (euro)</mat-label>
+                    <input matInput formControlName = "amount" [(ngModel)] = "amount">
+                    <button mat-button *ngIf="amount" matSuffix mat-icon-button aria-label="Clear" (click)="amount=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="donationForm.controls['amount'].hasError('required')">
+                        Amount is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                </div>
+                <button mat-button class = "submit-button" type = "button" (click) = "onFormSubmit()" [disabled]="donationForm.invalid">
+                    <label>Submit</label></button>
+                <div *ngIf="invalidLogin" class="error">
+                <div>Invalid form.</div>
+                </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>

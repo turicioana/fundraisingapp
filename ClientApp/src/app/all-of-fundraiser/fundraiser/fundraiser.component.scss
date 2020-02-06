@@ -1,0 +1,46 @@
+.fundraiser-card{
+    width: 98%;
+    box-sizing: border-box;
+    border-radius:3px;
+    background-color: rgb(248,237,209, 0.6);    
+    margin-bottom: 1%;
+    margin-right: 1%;
+    margin-left: 1%;
+}
+.card-header-class{
+    color:rgb(71,72,67);
+    font-size: 20px;
+    font-family:"Roboto";
+}
+
+.card-content-class{
+    color:rgb(71,72,67);
+    font-size: 14px;
+    font-family:"Roboto";
+}
+.fundraiser-card:hover{
+    -moz-box-shadow: 0 0 50px rgb(216,138,138, 0.4);
+    -webkit-box-shadow: 0 0 50px rgb(216,138,138, 0.4);
+    box-shadow: 0px 15px 50px rgb(216,138,138, 0.4);
+}
+
+.card-header-image{
+    background-image: url(../../../assets/images/money.svg);
+    background-size: cover;
+}
+
+.action-buttons{
+    float: right;
+    margin-top:-4vh;
+}
+.action-buttons button{
+    width:18vh;
+    font-size: 14px;
+    margin-right: 1vh;
+    color: #fff;
+    background: rgb(216,138,138);
+    cursor: pointer;
+    border-radius: 6px;
+    border:none;
+    outline: none;
+}

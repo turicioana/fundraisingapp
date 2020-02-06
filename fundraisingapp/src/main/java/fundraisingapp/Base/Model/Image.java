@@ -1,6 +1,7 @@
 package fundraisingapp.Base.Model;
 
 import org.hibernate.annotations.Type;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 
@@ -12,15 +13,18 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="photo_blob")
-    @Type(type="org.hibernate.type.BinaryType")
-    private byte[] photoBlob;
+    @Column(name = "file", columnDefinition="text")
+    private String file;
 
-    @Column(name = "photo_content_length")
-    private Integer photoContentLength;
-
-    @Column(name = "photo_content_type", length = 50)
-    private String photoContentType;
+//    @Column(name="photo_blob")
+//    @Type(type="org.hibernate.type.BinaryType")
+//    private byte[] photoBlob;
+//
+//    @Column(name = "photo_content_length")
+//    private Integer photoContentLength;
+//
+//    @Column(name = "photo_content_type", length = 50)
+//    private String photoContentType;
 
     @ManyToOne
     @JoinTable(
@@ -32,5 +36,29 @@ public class Image {
     private Fundraiser fundraiser;
 
     public Image() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
+    }
+
+    public Fundraiser getFundraiser() {
+        return fundraiser;
+    }
+
+    public void setFundraiser(Fundraiser fundraiser) {
+        this.fundraiser = fundraiser;
     }
 }

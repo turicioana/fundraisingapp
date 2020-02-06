@@ -1,0 +1,51 @@
+.dashboard_wrapper{
+    width: 90%;
+    height: 75vh;
+    margin:auto;
+    background-color:  rgb(157,157,147, 0.6);
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5vh 15px;
+    overflow: hidden;
+    box-shadow: 0px 15px 50px rgb(216,138,138, 0.4);
+}
+.dashboard_card{
+    display: flex;
+    flex-wrap: wrap;
+    width: 98%;
+    height: 98%;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: rgb(248,237,209, 0.6);
+    opacity: 3px;
+    margin-right: 1%;
+    margin-left: 1%;
+    padding: 10px;
+}
+
+.action-buttons{
+    float: right;
+    margin-top:15vh;
+    margin-right: 8vh;
+}
+.action-buttons button{
+    width:18vh;
+    font-size: 14px;
+    margin-right: 3vh;
+    color: #fff;
+    background: rgb(216,138,138);
+    cursor: pointer;
+    border-radius: 6px;
+    border:none;
+    outline: none;
+}
+.card-header-image{
+    background-image: url(../../../assets/images/money.svg);
+    background-size: cover;
+}
+
+ul li{
+    display:inline;
+    margin-right: 4vh;
+}

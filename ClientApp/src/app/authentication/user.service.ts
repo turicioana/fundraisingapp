@@ -23,9 +23,6 @@ export class UserService {
   }
 
   register(user: RegisterUser) {
-    console.log(JSON.stringify(user));
-    console.log(`${environment.apiBaseUrl}/register`);
-    console.log(JSON.stringify(this.options));
     return this.http.post<RegisterUser>(`${environment.apiBaseUrl}/register`,JSON.stringify(user),this.options);
     }
 }

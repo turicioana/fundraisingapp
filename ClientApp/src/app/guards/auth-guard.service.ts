@@ -6,22 +6,23 @@ import * as jwt_decode from 'jwt-decode';
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate {
-  public currentUser = JSON.parse(localStorage.getItem('token'));
+  public currentUser;
   constructor(
     private router: Router,
-  ) { }
+  ) {
+    this.currentUser = JSON.parse(localStorage.getItem('token'));
+   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
+  canActivate(route: ActivatedRouteSnapshot){
+    this.currentUser = JSON.parse(localStorage.getItem('token'));
     if(this.currentUser){
       var decode = jwt_decode(this.currentUser);
-      console.log(decode['roles'][0]['authority']);
       if(route.data.roles && route.data.roles.indexOf(decode['roles'][0]['authority']) == -1){
         this.router.navigate(['/auth']);
         return false;
       }
       return true;
     }
-    this.router.navigate(['/login'], {queryParams: {returnUrl:state.url}});
-    return false;
+    return this.router.parseUrl('/auth');
   }
 }

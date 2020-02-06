@@ -18,6 +18,12 @@ public class Fundraiser {
     @Column(name = "decription", nullable = false, columnDefinition="text")
     private String description;
 
+    @Column(name = "maximumAmount", nullable = false)
+    private double maximumAmount;
+
+    @Column(name = "actualAmount", nullable = false)
+    private double actualAmount;
+
     @Column(name = "address")
     private String address;
 
@@ -27,7 +33,10 @@ public class Fundraiser {
     @Column(name = "phone_number")
     private String phone_number;
 
-    @OneToMany(mappedBy = "fundraiser")
+    @Column(name = "active")
+    private boolean active;
+
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Image> images;
 
     @ManyToOne
@@ -48,15 +57,17 @@ public class Fundraiser {
                     name = "category_id", referencedColumnName = "id"))
     private Category category;
 
+    @OneToMany(mappedBy = "fundraiser")
+    private List<Voucher> vouchers;
+
+    @OneToMany()
+    private List<Donation> donations;
+
     public Fundraiser() {
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -121,5 +132,49 @@ public class Fundraiser {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Voucher> getVouchers() {
+        return vouchers;
+    }
+
+    public void setVouchers(List<Voucher> vouchers) {
+        this.vouchers = vouchers;
+    }
+
+    public double getMaximumAmount() {
+        return maximumAmount;
+    }
+
+    public void setMaximumAmount(double maximumAmount) {
+        this.maximumAmount = maximumAmount;
+    }
+
+    public double getActualAmount() {
+        return actualAmount;
+    }
+
+    public void setActualAmount(double actualAmount) {
+        this.actualAmount = actualAmount;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public List<Donation> getDonations() {
+        return donations;
+    }
+
+    public void setDonations(List<Donation> donations) {
+        this.donations = donations;
     }
 }

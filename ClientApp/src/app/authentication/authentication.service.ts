@@ -27,15 +27,13 @@ export class AuthenticationService {
     }
 
     login(email, password) {
-        let user = {
+        let loginUser = {
             email: email,
-            password: password,
-            token: ''
-        };
-        return this.userService.login(user)
+            password: password
+        }
+        return this.userService.login(loginUser)
         .pipe(map(user => {
             localStorage.setItem('token', JSON.stringify(user.token));
-            this.currentUserSubject.next(user);
             return user;
         }));
     }

@@ -1,6 +1,8 @@
 package fundraisingapp.Auth.Model;
 
 
+import fundraisingapp.Base.Model.Company;
+import fundraisingapp.Base.Model.Donation;
 import fundraisingapp.Base.Model.Fundraiser;
 
 import javax.persistence.*;
@@ -37,6 +39,12 @@ public class User {
 
     @OneToMany()
     private List<Fundraiser> fundraisers;
+
+    @OneToMany()
+    private List<Donation> donations;
+
+    @OneToMany()
+    private List<Company> companies;
 
     public User(){}
 
@@ -100,4 +108,5 @@ public class User {
     public boolean isEnabled() { return isEnabled; }
 
     public void setEnabled(boolean enabled) { isEnabled = enabled; }
+
 }

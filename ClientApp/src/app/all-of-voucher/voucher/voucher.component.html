@@ -1,0 +1,19 @@
+<app-header></app-header>
+<div style="">
+<mat-card fxLayout="column" class = "home_wrapper">
+    <div class="scrollbar" id = "style-1">
+        <mat-card class = "fundraiser-card" *ngFor="let voucher of vouchersObservable | async">
+        <mat-card-header>
+            <div mat-card-avatar class= "card-header-image"></div>
+            <mat-card-title class = "card-header-class">{{voucher.type}} {{voucher.purpose}}</mat-card-title>
+            <mat-card-subtitle class = "card-header-class">{{voucher.number}}</mat-card-subtitle>
+	    </mat-card-header>
+        <mat-card-content>
+            <div class = "action-buttons">
+                <button mat-button [routerLink] = "['/vouchers', voucher.id]">Details</button>
+            </div>
+        </mat-card-content>
+        </mat-card>
+    </div>
+</mat-card>
+</div>

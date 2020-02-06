@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FundraiserService } from '../fundraiser.service';
-import { FundraiserComponent } from '../fundraiser/fundraiser.component';
+import { FundraiserComponent } from '../all-of-fundraiser/fundraiser/fundraiser.component';
 
 @Component({
   selector: 'app-home',

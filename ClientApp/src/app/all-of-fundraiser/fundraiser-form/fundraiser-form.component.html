@@ -1,0 +1,128 @@
+<app-header></app-header>
+    <mat-card fxLayout="column" class = "dashboard_wrapper">
+        <mat-card fxLayout = "column" class = "dashboard_card">
+        <mat-card-header>
+            <mat-icon mat-card-avatar class= "card-header-image"></mat-icon>
+            <mat-card-title class = "card-header-class">
+            Fundraiser registration form
+            </mat-card-title>
+            <mat-card-subtitle class = "card-subheader-class">
+            *by completing the information in this form you give your consent regarding the processing of this data
+            <br>*all images containing people will be blurred to protect their identity
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div class = "form-container" [formGroup]="fundraiserForm" (ngSubmit)="onFormSubmit()">
+                <div fxLayout = "column">
+                <div fxLayout = "row" class = "form-section-1">
+                <mat-form-field>
+                    <mat-label>Title</mat-label>
+                    <input matInput formControlName = "title" [(ngModel)] = "title">
+                    <button mat-button *ngIf="title" matSuffix mat-icon-button aria-label="Clear" (click)="title=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="fundraiserForm.controls['title'].hasError('required')">
+                        Title is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Choose category</mat-label>
+                    <mat-select formControlName="category">
+                    <mat-option *ngFor = "let category of categoriesObservable | async" [value] = "category.name">
+                        {{category.name}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Amount</mat-label>
+                    <input matInput formControlName = "amount" [(ngModel)] = "amount">
+                    <button mat-button *ngIf="amount" matSuffix mat-icon-button aria-label="Clear" (click)="amount=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="fundraiserForm.controls['amount'].hasError('required')">
+                        Amount is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Address</mat-label>
+                    <input matInput formControlName = "address">
+                    <mat-error *ngIf="fundraiserForm.controls['address'].hasError('required')">
+                        Address is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf = "fundraiserForm.controls['address'].hasError('maxlength')"> 
+                        Address should have maximum 100 characters
+                    </mat-error>
+                </mat-form-field>
+                </div>
+                <div fxLayout = "row" class = "form-section-1">
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName = "description"></textarea>
+                    <mat-error *ngIf="fundraiserForm.controls['description'].hasError('required')">
+                        Description is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf = "fundraiserForm.controls['description'].hasError('maxlength')"> 
+                        Descriptions should have maximum 100 characters
+                    </mat-error>
+                </mat-form-field>
+                <small class="form-text text-muted"><code>{{fundraiserForm.controls['description'].value.length}}</code> / <code>200</code></small>
+                <mat-form-field>
+                    <mat-label>Contact email</mat-label>
+                    <input matInput formControlName = "contact_email" [(ngModel)] = "contact_email">
+                    <button mat-button *ngIf="contact_email" matSuffix mat-icon-button aria-label="Clear" (click)="contact_email=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="fundraiserForm.controls['contact_email'].hasError('required')">
+                        Contact email is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf = "fundraiserForm.controls['contact_email'].hasError('email')"> 
+                        Invalid email format
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Phone number</mat-label>
+                    <input matInput formControlName = "phone_number" [(ngModel)] = "phone_number">
+                    <button mat-button *ngIf="phone_number" matSuffix mat-icon-button aria-label="Clear" (click)="phone_number=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="fundraiserForm.controls['phone_number'].hasError('required')">
+                        Phone number is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                </div>
+                <div fxLayout = "row">
+                <input formControlName="images" type="file" ng2FileSelect accept=".jpg" [uploader]="uploader" multiple/><br/>
+                    <br>
+                    <table>
+                        <thead>
+                        <tr>
+                        <th width="90%">
+                            File Name
+                        </th>
+                        <th width="10%">
+                            Remove
+                        </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let item of uploader.queue">
+                        <th width="90%">
+                            {{item?.file?.name}}
+                        </th>
+                        <th class="text-center" width="10%">
+                            <mat-icon (click)="item.remove()">delete</mat-icon>
+                        </th>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                </div>
+                <button mat-button class = "submit-button" type = "button" (click) = "onFormSubmit()" [disabled]="fundraiserForm.invalid">
+                    <label>Submit</label></button>
+                <div *ngIf="invalidLogin" class="error">
+                <div>Invalid form.</div>
+                </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
