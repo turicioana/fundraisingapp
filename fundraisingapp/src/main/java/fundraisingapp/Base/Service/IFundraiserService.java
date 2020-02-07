@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface IFundraiserService {
     List<FundraiserDetailsDto> getAllFundraisers();
+    List<FundraiserDetailsDto> getAllFundraisersByUser();
     Fundraiser saveFundraiser(FundraiserRegistrationDto fundraiserDto) throws IOException;
     FundraiserDetailsDto getById(Long id);
     Fundraiser activateFundraiser(Long id, ActiveAccountDto activeAccountDto);

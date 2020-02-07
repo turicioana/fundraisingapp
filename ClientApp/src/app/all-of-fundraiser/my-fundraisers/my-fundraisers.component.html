@@ -15,9 +15,6 @@
                 <p class = "card-content-class">Phone number: {{fundraiser.phone_number}}</p>
                 <div class = "action-buttons">
                     <button mat-button [routerLink] = "['/fundraisers', fundraiser.id]">Details</button>
-                    <button mat-button *ngIf = "hasRole('COMPANY')" [routerLink] = "['/fundraisers', fundraiser.id,'/vouchers']">Add voucher</button>
-                    <button mat-button *ngIf = "hasRole('USER') || hasRole('COMPANY')" [routerLink] = "['/fundraisers',fundraiser.id,'donations']">Donate</button>
-                    <button mat-button *ngIf = "hasRole('ADMIN')" [routerLink] = "['/home/fundraisers']" (click) = "activateAccount(fundraiser.id)">Approve</button>
                 </div>
             </mat-card-content>
     </mat-card>

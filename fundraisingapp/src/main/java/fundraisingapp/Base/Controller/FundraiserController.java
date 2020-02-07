@@ -45,14 +45,20 @@ public class FundraiserController {
     }
 
     @GetMapping
-    public List<FundraiserDetailsDto> getAllFundraisers(){
-        return fundraiserService.getAllFundraisers();
+    public ResponseEntity<List<FundraiserDetailsDto>> getAllFundraisers(){
+        return ResponseEntity.status(HttpStatus.OK).body(fundraiserService.getAllFundraisers());
     }
 
     @PreAuthorize("hasAnyAuthority('FUNDRAISER', 'USER', 'COMPANY','ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<FundraiserDetailsDto> getSpecificFundraiser(@PathVariable Long id){
         return ResponseEntity.status(HttpStatus.OK).body(fundraiserService.getById(id));
+    }
+
+    @PreAuthorize("hasAnyAuthority('FUNDRAISER')")
+    @GetMapping("/my_fundraisers")
+    public ResponseEntity<List<FundraiserDetailsDto>> getSpecificFundraiserForCurrentUser(){
+        return ResponseEntity.status(HttpStatus.OK).body(fundraiserService.getAllFundraisersByUser());
     }
 
     @PreAuthorize("hasAnyAuthority('FUNDRAISER', 'USER')")
@@ -83,7 +89,7 @@ public class FundraiserController {
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
-    @PreAuthorize("hasAnyAuthority('USER')")
+    @PreAuthorize("hasAnyAuthority('USER','COMPANY')")
     @PostMapping("/{id}/donations")
     public ResponseEntity<?> addDonation(@PathVariable Long id, @RequestBody DonationDto donationDto){
         if(donationService.saveDonation(id,donationDto)!=null){

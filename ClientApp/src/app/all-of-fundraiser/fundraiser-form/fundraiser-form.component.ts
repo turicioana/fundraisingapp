@@ -61,7 +61,7 @@ export class FundraiserFormComponent implements OnInit {
       .subscribe(
           (data) => {
             alert('Fundraiser successfully added!');
-          this.router.navigateByUrl('/home/fundraisers');
+          this.router.navigateByUrl('/fundraisers');
           this.fundraiserForm.reset();
         }
       );

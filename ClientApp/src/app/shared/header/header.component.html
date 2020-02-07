@@ -3,8 +3,7 @@
         <h1 class = "title-container" routerLink = ''>{{title}}</h1>
         <div class = "right-container">
             <span class = "welcome-message">Welcome, {{user}}</span>
-            <img src = "..//../assets/images/down-arrow.svg" class = "navigation-arrow">
-            <img src = "..//../assets/images/logout.svg" class = "logout">
+            <img src = "..//../assets/images/logout.svg" class = "logout" (click) = "logout()">
         </div>
     </div>
 </header>

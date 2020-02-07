@@ -34,6 +34,7 @@ import { VoucherFormComponent } from './all-of-voucher/voucher-form/voucher-form
 import { VoucherComponent } from './all-of-voucher/voucher/voucher.component';
 import { VoucherDetailsComponent } from './all-of-voucher/voucher-details/voucher-details.component';
 import { DonationFormComponent } from './donation-form/donation-form.component';
+import { MyFundraisersComponent } from './all-of-fundraiser/my-fundraisers/my-fundraisers.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { DonationFormComponent } from './donation-form/donation-form.component';
     VoucherComponent,
     VoucherDetailsComponent,
     DonationFormComponent,
+    MyFundraisersComponent,
   ],
   imports: [
     BrowserModule,

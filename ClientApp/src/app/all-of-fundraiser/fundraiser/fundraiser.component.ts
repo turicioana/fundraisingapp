@@ -38,16 +38,15 @@ export class FundraiserComponent implements OnInit {
   }
 
   activateAccount(id:string){
-    console.log("A intrat")
     var active = {
       active : true as boolean
     }
     this.fundraiserService.activateAccount(id,active).subscribe(
       (data) => {
-      alert('Fundraiser successfully added!');
-        this.router.navigateByUrl('/home/fundraisers');
+      alert('Fundraiser successfully activated!');
+      this.router.navigateByUrl('/fundraisers');
+      this.fundraisersObservable = this.fundraiserService.getAllFundraisers();
       }
     )
-    console.log("A terminat")
   }
 }

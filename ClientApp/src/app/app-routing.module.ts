@@ -3,7 +3,6 @@ import { Route, RouterModule } from '@angular/router';
 import {AuthGuardService} from './guards/auth-guard.service'
 
 import { LoginComponent } from './authentication/login/login.component';
-import { HomeComponent } from './home/home.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import { AuthComponent } from './authentication/auth/auth.component';
 import { RegisterComponent } from './authentication/register/register.component';
@@ -16,6 +15,7 @@ import {VoucherFormComponent} from './all-of-voucher/voucher-form/voucher-form.c
 import {VoucherDetailsComponent} from './all-of-voucher/voucher-details/voucher-details.component';
 import {VoucherComponent} from './all-of-voucher/voucher/voucher.component';
 import { DonationFormComponent } from './donation-form/donation-form.component';
+import { MyFundraisersComponent } from './all-of-fundraiser/my-fundraisers/my-fundraisers.component';
 const routes: Route[] = [
   { path: '', component: DashboardComponent, canActivate: [AuthGuardService], children: [
     {
@@ -24,13 +24,18 @@ const routes: Route[] = [
       data: { roles: ['FUNDRAISER', 'USER','ADMIN']}
     }
   ]},
-  {path: 'home', component: HomeComponent, canActivate: [AuthGuardService], children:[
-    {
-      path:"fundraisers",
-      component: FundraiserComponent,
-      data: { roles: ['FUNDRAISER', 'USER', 'COMPANY']}
-    }
-  ]},
+  {
+    path:"fundraisers",
+    component: FundraiserComponent,
+    canActivate: [AuthGuardService],
+    data: { roles: ['FUNDRAISER', 'USER', 'COMPANY','ADMIN']}
+  },
+  {
+    path:"my_fundraisers",
+    component: MyFundraisersComponent,
+    canActivate:[AuthGuardService],
+    data: {roles: ['FUNDRAISER']}
+  },
   {
     path:"fundraisers/:id",
     component: FundraiserDetailsComponent,

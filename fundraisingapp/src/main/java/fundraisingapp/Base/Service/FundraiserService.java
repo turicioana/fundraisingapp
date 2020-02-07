@@ -1,5 +1,6 @@
 package fundraisingapp.Base.Service;
 
+import fundraisingapp.Auth.Model.User;
 import fundraisingapp.Auth.Service.IUserService;
 import fundraisingapp.Base.Dto.ActiveAccountDto;
 import fundraisingapp.Base.Dto.FundraiserDetailsDto;
@@ -71,6 +72,19 @@ public class FundraiserService implements IFundraiserService {
             }
         }
         return fundraisersDto;
+    }
+
+    @Override
+    public List<FundraiserDetailsDto> getAllFundraisersByUser() {
+        User user = authenticationFacade.getAuthenticatedUser();
+        List<Fundraiser> fundraisers = fundraiserRepository.findAllByUser(user.getId());
+        List<FundraiserDetailsDto> fundraiserDto = new ArrayList<>();
+        for( Fundraiser fundraiser: fundraisers){
+            if(fundraiser.isActive()){
+                fundraiserDto.add(fundraiserMapper.FundraiserToFundraiserDetailsDto(fundraiser));
+            }
+        }
+        return  fundraiserDto;
     }
 
     private String imageProcessing(String image){

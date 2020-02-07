@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AuthGuardService } from 'src/app/guards/auth-guard.service';
 import * as jwt_decode from 'jwt-decode';
 import * as $ from 'jquery';
+import { BehaviorSubject } from 'rxjs';
+import { User } from 'src/app/models/user';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,11 +14,14 @@ import * as $ from 'jquery';
 })
 export class HeaderComponent implements OnInit {
   private user: string;
-  private title = "FundraisingApp";
+  private title = "BePresent";
   private jQuery: any;
+  private currentUserSubject: BehaviorSubject<User>;
   constructor(
-    private authGuard: AuthGuardService
+    private authGuard: AuthGuardService,
+    private router: Router
   ) {
+    this.currentUserSubject =  new BehaviorSubject<User>(JSON.parse(localStorage.getItem('token')));
     this.user = jwt_decode(this.authGuard.currentUser)['username'];
    }
 
@@ -28,5 +34,11 @@ export class HeaderComponent implements OnInit {
       });
     })();
   }
+
+  logout(){
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('/auth');
+    this.currentUserSubject.next(null);
+}
 
 }

@@ -11,7 +11,7 @@
             <mat-select>
                     <mat-option *ngFor = "let category of categoriesObservable | async" [value] = "category.name">{{category.name}}
                     </mat-option>
-                    <mat-option routerLink='/home/fundraisers'> All categories</mat-option>
+                    <mat-option routerLink='/fundraisers'> All categories</mat-option>
             </mat-select>
             </mat-form-field>
             </mat-card-title>
@@ -32,11 +32,18 @@
 
         <mat-card class = "dashboard_card">
             <mat-card-header>
-            <mat-icon mat-card-avatar class= "card-header-image3"></mat-icon>
-            <mat-card-title class = "card-header-class">
+            <mat-icon mat-card-avatar class= "card-header-image3" *ngIf = "hasRole('USER') || hasRole('COMPANY')"></mat-icon>
+            <mat-card-title class = "card-header-class" *ngIf = "hasRole('USER') || hasRole('COMPANY')">
             Do you represent a company? Add vouchers to your products/services to make people donate.
             <button class = "btn" routerLink='/company-form'> 
                 <label>Go to form >></label>
+            </button>
+            </mat-card-title>
+            <mat-icon mat-card-avatar class= "card-header-image5" *ngIf = "hasRole('FUNDRAISER')"></mat-icon>
+            <mat-card-title class = "card-header-class" *ngIf = "hasRole('FUNDRAISER')">
+            See here all the charitable causes added by you
+            <button class = "btn" routerLink='/my_fundraisers'> 
+                <label>See causes >></label>
             </button>
             </mat-card-title>
             </mat-card-header>

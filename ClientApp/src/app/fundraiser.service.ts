@@ -25,6 +25,9 @@ export class FundraiserService {
   getAllFundraisers(){
     return this.http.get<any>(`${environment.apiBaseUrl}/fundraisers`,this.options); 
   }
+  getAllFundraiserByUser(){
+    return this.http.get<any>(`${environment.apiBaseUrl}/fundraisers/my_fundraisers`, this.options);
+  }
 
   addFundraiser(fundraiser: Fundraiser){
     return this.http.post<Fundraiser>(`${environment.apiBaseUrl}/fundraisers`,JSON.stringify(fundraiser),this.options);
@@ -45,5 +48,6 @@ export class FundraiserService {
   addDonatioForFundraiser(id:string,donation:Donation){
     return this.http.post<Donation>(`${environment.apiBaseUrl}/fundraisers/${id}/donations`, JSON.stringify(donation), this.options);
   }
+
 
 }
